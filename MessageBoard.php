@@ -6,6 +6,7 @@ include_once('item.php');
 class MessageBoard extends DB{
 	var $information = array();
 	var $messages = array();
+	var $userdata = array();
 	var $database = null;
 	function __construct(){
 		$db_server = parent::get_ip();
@@ -112,7 +113,20 @@ class MessageBoard extends DB{
 
                 }
         }
+	
+	function update_userdata($acc,$u_thumb,$u_publish){
+//		$sql = "SELECT * FROM `user` where `acc` = '$acc'";
+                $sql = "UPDATE `user` SET `thumb`='$u_thumb',`publish`='$u_publish' WHERE `acc`='$acc'";
+		$this->database->query($sql);
+//                $row = $result->fetch_assoc();
+/*                while ($row = $result->fetch_assoc()){
+                        $myobj=new stdClass;
+                        $myobj->thumb=$row['thumb'];
+			$myobj->publish=$row['publish'];
+                        array_push($this->userdata,$myobj);
 
+                }*/
+	}
 }
 
 
@@ -150,8 +164,17 @@ else if ($registration == "sylla"){
 $m->get_lecture();
 $arr = $m->information;
 echo json_encode($arr);
-//echo "good";
 
+}
+
+else if ($registration == "user"){
+$u_acc = $_POST['user_name'];
+$u_thumb = $_POST['u_thumb'];
+$u_publish = $_POST['u_publish'];
+$m->update_userdata($u_acc,$u_thumb,$u_publish);
+//$m->get_userdata($u_acc);
+//$arr = $m->userdata;
+//echo json_encode($arr);
 }
 
 if ($registration == "init"){

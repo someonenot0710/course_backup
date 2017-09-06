@@ -1,5 +1,9 @@
 //curUser: current user account
+//user_thumb , user_publish
+var thumb_poi = document.getElementById('thumb');
+var publish_poi = document.getElementById('publish');
 function init(){
+	  console.log(user_thumb+"__"+user_publish);
           $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
@@ -16,13 +20,19 @@ function init(){
 
 //function getMessage () {
 function getMessage(stu){	
-	//var student_poi = document.getElementById('name');
-	//var student_poi;
-	//student_poi.value=stu;
+	if(parseInt(publish_poi.innerHTML)<1){
 	var datas_poi = document.getElementById('content');
-//	var student = student_poi.value;
+        var datas = datas_poi.value;
+        datas_poi.value="";
+	alert("You have no right to post");
+	}
+	else{
+	saveUserdata(stu,parseInt(thumb_poi.innerHTML),parseInt(publish_poi.innerHTML)-1);
+	publish_poi.innerHTML = parseInt(publish_poi.innerHTML)-1;
+//	console.log(user_data.thumb+"  ======   "+user_data.publish);
+//	console.log(data_user);
+	var datas_poi = document.getElementById('content');
 	var datas = datas_poi.value;
-//	student_poi.value="";
 	datas_poi.value="";	
 	console.log(stu+"  "+datas);	
           $.ajax({
@@ -31,17 +41,32 @@ function getMessage(stu){
             datatype: 'json',
            data: {registration: "success", student_id: stu, contents: datas,t_id: talk_id},
             success:function(result){
-//		console.log(result);
-//		show(result);
 		rank_thumb(result);
+           }
+    })
+	}
+//	window.location.reload();
+}
+
+
+
+
+function saveUserdata(user_name,u_thumb,u_publish){
+
+     $.ajax({
+           url:"MessageBoard.php", //the page containing php script
+            type: "POST", //request type,
+            datatype: 'json',
+           data: {registration: "user", user_name: user_name, u_thumb:u_thumb, u_publish:u_publish},
+            success:function(result){
+	//	getUserresult(result);
+//		callback(result);
            }
     })
 }
 
 
-function saveData(){
-
-}
+//}
 
 
 function show(result){
@@ -128,7 +153,14 @@ function compare(a,b) {
 
 
 function press_thumb(class_name){
+//console.log(thumb_poi.innerHTML);
+if(parseInt(thumb_poi.innerHTML)<1){
+alert("You have no right to press thumb");
+}
 
+else{
+saveUserdata(curUser,parseInt(thumb_poi.innerHTML)-1,parseInt(publish_poi.innerHTML));
+thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)-1;
 var num = document.getElementById(class_name);
 
 count = parseInt(num.innerHTML);
@@ -138,8 +170,11 @@ num.innerHTML = count;
 console.log("add "+curUser);
 save_thumb(class_name,count,1);
 }
+}
 
 function unpress_thumb(class_name){
+saveUserdata(curUser,parseInt(thumb_poi.innerHTML)+1,parseInt(publish_poi.innerHTML));
+thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)+1;
 var num = document.getElementById(class_name);
 
 count = parseInt(num.innerHTML);
@@ -172,4 +207,6 @@ function save_thumb(m_id,m_num,likeorunlike){
 window.onload = function(){
 //console.log(talk_id);
 init();
+//console.log(curUser);
+//getUserdata(curUser);
 }

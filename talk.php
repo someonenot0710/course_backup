@@ -29,7 +29,40 @@ $uu = $_SESSION['account'];
 //echo "Hi $uu!";
 
 ?>
+
+<?php 
+
+include_once('item.php');
+
+class Login extends DB{
+        function __construct(){
+                $db_server = parent::get_ip();
+                $db_name = parent::get_name();
+                $db_pwd = parent::get_pwd();
+                $db_user = parent::get_user();
+                $this->database= new mysqli($db_server,$db_user,$db_pwd,$db_name);
+                if ($this->database->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+                }
+        }
+}
+
+$l = new Login();
+
+$sql = "SELECT * FROM `user` where `acc` = '$uu'";
+$result = $l->database->query($sql);
+
+while ($row = $result->fetch_assoc()){
+$myobj=new stdClass;
+$myobj->thumb=$row['thumb'];
+$myobj->publish=$row['publish'];
+
+}
+
+?>
+
     <body>
+	
 	<!-- Preloader Start -->
     <div class="preloader">
 	  <p>Loading...</p>
@@ -40,7 +73,6 @@ $uu = $_SESSION['account'];
     
     <!-- Menu Section Start -->
     <header id="home">
-        
         <div class="header-top-area">
             <div class="container">
                 <div class="row">
@@ -64,18 +96,9 @@ $uu = $_SESSION['account'];
                                 </div>
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li class="active"><a class="smoth-scroll" href="#home">Home <div class="ripple-wrapper"></div></a>
+                                        <li class="active"><a class="smoth-scroll" href="syllabus.php">Home<!--div class="ripple-wrapper"></div--></a>
                                         </li>
-										<li><a class="smoth-scroll" href="#about">Logout</a></li>
-                                        <!--li><a class="smoth-scroll" href="#about">About</a>
-                                        </li>
-                                        <li><a class="smoth-scroll" href="#portfolio">Portfolio</a>
-                                        </li>
-                                        <li><a class="smoth-scroll" href="#testimonials">Testimonial</a>
-                                        </li>
-                                        <li><a class="smoth-scroll" href="#services">services</a>
-                                        </li>
-                                        <li><a class="smoth-scroll" href="#contact">Contact</a>
+					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
                                         </li-->
                                     </ul>
                                 </div>
@@ -86,12 +109,10 @@ $uu = $_SESSION['account'];
             </div>
         </div>
      </header>
-	<input type="button" onclick="location.href='logout.php';" value="logout" />
-
-	<div id="board"></div>
-	
 
 	<form action="">
+	<h1 >thumb: <span id="thumb"><?php echo $myobj->thumb;?></span></h1>
+	<h1 >publish:<span id="publish"> <?php echo $myobj->publish;?></span></h1>
   	name: <?php echo "$uu";?><br>
  	 <!--input type="text" name="name" id="name"-->
 	<?php $talk_id=$_SERVER['QUERY_STRING'];?>
@@ -101,12 +122,20 @@ $uu = $_SESSION['account'];
   	<br><br>
   	<input type="button" value="Submit" onclick="getMessage('<?php echo $uu;?>')">
 	</form> 	
-
+        <div id="board"></div>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
 	<script type="text/javascript"> var talk_id = <?php echo "'$talk_id'"; ?>;</script>
+	<script type="text/javascript"> var user_thumb = <?php echo "'$myobj->thumb'"; ?>;</script>
+	<script type="text/javascript"> var user_publish = <?php echo "'$myobj->publish'"; ?>;</script>
         <script type="text/javascript" src="test.js"></script> 
+	<!-- All Javascript Plugins  -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/plugin.js"></script>
+    
+        <!-- Main Javascript File  -->
+        <script type="text/javascript" src="js/scripts.js"></script>
 
     </body>
 
