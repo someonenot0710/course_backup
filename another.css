@@ -1,0 +1,50 @@
+@media screen and (min-width: 450px) {
+.one {
+text-align:center;
+
+}
+
+
+.one img{
+border-radius:50%;
+width:17%;
+height:30%;
+}
+
+
+.content {
+margin-left: 20%;
+margin-right: 20%;
+
+}
+
+
+}
+
+
+@media  screen and (max-width: 450px){
+
+
+.one {
+text-align:center;
+}
+
+.one img{
+border-radius:50%;
+width:60%;
+height:30%;
+}
+
+
+.content {
+margin-left: 3%;
+margin-right: 3%;
+
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
