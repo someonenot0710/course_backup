@@ -61,7 +61,7 @@ $myobj->publish=$row['publish'.$talk_id];
 
 ?>
 
-    <body>
+    <body  background="images/bg/pattern-bg.png">
 	
 	<!-- Preloader Start -->
     <div class="preloader">
@@ -77,11 +77,13 @@ $myobj->publish=$row['publish'.$talk_id];
             <div class="container">
                 <div class="row">
                 
-                    <!--div class="col-sm-3">
+                    <div class="col-sm-3">
                         <div class="logo">
-                            <a href="index-2.html">WebRes</a>
+                            <a><?php echo "$uu";?></a>
+                            <img src="images/icon/ask_icon.png" style="width: 30px;"/> <font id="publish"><?php echo "$myobj->publish";?></font>
+                            <img src="images/icon/like.png" style="width: 20px;"/> <font id="thumb"><?php echo "$myobj->thumb";?></font>
                         </div>
-                    </div-->
+                    </div>
                     
                     <div class="col-sm-9">
                         <div class="navigation-menu">
@@ -99,7 +101,9 @@ $myobj->publish=$row['publish'.$talk_id];
                                         <li class="active"><a class="smoth-scroll" href="syllabus.php">Home<!--div class="ripple-wrapper"></div--></a>
                                         </li>
 					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
-                                        </li-->
+                                        </li>
+                                        <li class="active"><a class="smoth-scroll" href="changepwd.php">Change Password</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -109,20 +113,17 @@ $myobj->publish=$row['publish'.$talk_id];
             </div>
         </div>
      </header>
-
-	<form action="">
-	<h1 >thumb: <span id="thumb"><?php echo $myobj->thumb;?></span></h1>
-	<h1 >publish:<span id="publish"> <?php echo $myobj->publish;?></span></h1>
-  	name: <?php echo "$uu";?><br>
- 	 <!--input type="text" name="name" id="name"-->
+	<div class="question-box">
+	<form action="" style="text-align: center;">
 	<?php $talk_id=$_SERVER['QUERY_STRING'];?>
-  	<br>
-  	context:<br>
-  	<input id="content" type="text" name="content">
-  	<br><br>
-  	<input type="button" value="Submit" onclick="getMessage('<?php echo $uu;?>')">
+	<br>
+        <p>
+        <textarea id="content" class="question-text" name="content" placeholder="Type you question here..."></textarea>
+        </p>
+        <input type="button" value="Post" class="question-submit" onclick="getMessage()">
 	</form> 	
-        <div id="board"></div>
+	</div>
+        <div id="board" class="question-board"></div>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>

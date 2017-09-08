@@ -1,9 +1,19 @@
 <html lang="en">
 
     <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- All CSS Plugins -->
+        <link rel="stylesheet" type="text/css" href="css/plugin.css">
+
+        <!-- Main CSS Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!-- Google Web Fonts  -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+
         <link rel="stylesheet" type="text/css" href="another.css">
         <title>course</title>
     </head>
@@ -33,6 +43,10 @@ $l = new Login();
 
     <body>
     <script type="text/javascript"> var curUser = <?php echo "null;" ?>;</script>
+    <header id="home">
+        <div class="header-top-area">
+            <div class="container">
+                <div class="row">
 
 <?php 
 if(!isset($_SESSION['account'])){
@@ -60,25 +74,75 @@ if(!isset($_SESSION['account'])){
         }
     }
     ?> 
-    <form action="syllabus.php" method="post">
+                    <div class="col-sm-3">
+                        <div class="login">
+                            <form action="syllabus.php" method="post">
+                                <!--font>帳號:</font-->
+                                <input type="text" name="account" placeholder="帳號" style="width:80px; display: inline;">
+                                <!--font>密碼:</font-->
+                                <input type="password" name="password" placeholder="密碼" style="width:80px; display: inline;">
+                                <input type="submit" name="login" value="登入">
+                            </form>
+                        </div>
+                    </div>
+
+    <!--form action="syllabus.php" method="post">
         Account: <input type="text" name="account"><br/>
         Password: <input type="password" name="password"><br/>
         <input type="submit" name="login">
-    </form>
+    </form-->
 <?php 
 }
 else{
     $uu=$_SESSION['account'];
-    echo "Hi $uu <br>";
 ?>
-    <script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
-    <input type="button" onclick="location.href='logout.php';" value="logout" />
+                   <div class="col-sm-3">
+                        <div class="login">
+                            <a><?php echo "$uu";?></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="navigation-menu">
+                            <div class="navbar">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a class="smoth-scroll" href="logout.php">Logout</a>
+                                        </li>
+                                        <li class="active"><a class="smoth-scroll" href="changepwd.php">Change Password</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 <?php
 }
- 
 ?>
-        <div id="board"></div>
+                </div>
+            </div>
+        </div>
+ </header>
+
+    <script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
+    <!--input type="button" onclick="location.href='logout.php';" value="logout" /-->
+        <div id="board" class="talk-board"></div>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <!-- All Javascript Plugins  -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/plugin.js"></script>
+
+        <!-- Main Javascript File  -->
+        <script type="text/javascript" src="js/scripts.js"></script>
+
+
         <script type="text/javascript" src="main.js"></script>
     </body>
 

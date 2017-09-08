@@ -73,7 +73,7 @@ for (i=0;i<result.length;i++){
 	person_con = document.createTextNode(result[i]['lecturer']);
 	dates_con = document.createTextNode(result[i]['date']);
 	about_con = document.createTextNode(result[i]['syllabus']);		
-	links_con = document.createTextNode("討論區");
+	links_con = document.createTextNode("發問區");
 	image.src = result[i]['img'];
 	person.appendChild(person_con);
 	dates.appendChild(dates_con);

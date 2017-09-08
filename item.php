@@ -30,13 +30,13 @@ class DB{
 	//connect
 	//資料庫設定
 	//資料庫位置
-	var $db_server = "140.114.77.130";
+	var $db_server = "140.114.79.84";
 	//資料庫名稱
 	var $db_name = "seminar_106fall";
 	//資料庫管理者帳號
 	var $db_user = "course";
 	//資料庫管理者密碼
-	var $db_passwd = "nmsl";
+	var $db_passwd = "nmslinnthu";
 	//對資料庫連線
 
 //	$database= new mysqli($db_server,$db_user,$db_passwd,$db_name);

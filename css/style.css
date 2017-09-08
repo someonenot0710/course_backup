@@ -89,7 +89,8 @@ a {
 a:hover,
 a:active,
 a:focus {
-    color: #f7639a;
+/*    color: #f7639a;*/
+    color: #4682B4;
     text-decoration: none;
 	outline: none;
 }
@@ -319,7 +320,69 @@ fieldset {
   }
 }
 
+/* Change Password Box */
+.chgpwd {
+    padding-top: 80px;
+}
 
+/* Question Box */
+.question-box {
+    padding-top: 80px;
+}
+@media screen and (min-width: 450px) {
+.question-text {
+    width: 60%;
+    height: 80px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.question-submit {
+    position: absolute;
+    right: 20%;
+    width: 50px;
+    background-color: #f1f1f1;
+    border-color: #f1f1f1;
+}
+.question-submit:hover {
+    position: absolute;
+    right: 20%;
+    width: 50px;
+    background-color: #1E90FF;
+    border-color: #1E90FF;
+    color: #FFFFFF;
+}
+.question-board {
+    padding-top: 40px;
+    padding-left: 20%;
+    width: 80%;
+}
+}
+@media  screen and (max-width: 450px){
+.question-text {
+    width: 90%;
+    height: 80px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.question-submit {
+    position: absolute;
+    right: 5%;
+    width: 50px;
+    background-color: #e1e1e1;
+    border-color: #e1e1e1;
+}
+
+.question-board {
+    padding-top: 40px;
+    padding-left: 3%;
+    width: 95%;
+}
+
+}
+
+.talk-board {
+    padding-top: 100px;
+}
 
 /* Home Section and Navigation Menu */
 
@@ -374,7 +437,7 @@ tr > td:nth-child(2) {
 }
 
 .logo {
-    padding-top: 28px;
+    padding-top: 5px;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
@@ -385,9 +448,49 @@ tr > td:nth-child(2) {
     letter-spacing: 6px;
     font-weight: 600;
     font-size: 14px;
-	border-bottom: 4px solid #f7639a;
+/*	border-bottom: 4px solid #f7639a;*/
     width: 92px;
 }
+
+.login {
+    padding-top: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.login a {
+    display: block;
+    color: #333333;
+    letter-spacing: 6px;
+    font-weight: 600;
+    font-size: 14px;
+/*      border-bottom: 4px solid #f7639a;*/
+    width: 92px;
+}
+.login font{
+    display: inline;
+    color: #333333;
+    letter-spacing: 6px;
+    font-weight: 600;
+    font-size: 14px;
+/*      border-bottom: 4px solid #f7639a;*/
+    width: 92px;
+}
+
+/*.login input{
+    display: inline;
+    color: #333333;
+    font-weight: 600;
+    font-size: 12px;
+    width: 80px;
+}*/
+
+.login form{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
 
 .navigation-menu .navbar-nav li a {
     color: #333333;
@@ -402,7 +505,7 @@ tr > td:nth-child(2) {
 
 .navigation-menu .navbar-nav li a:hover {
     background: none;
-    color: #f7639a;
+    color: #4682B4;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
@@ -426,13 +529,34 @@ tr > td:nth-child(2) {
 }
 
 .navigation-background .logo {
-    padding-top: 18px;
+    padding-top: 5px;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
 
 .navigation-background .logo a {
 	color: #ffffff;
+}
+.navigation-background .logo img {
+	filter: brightness(0%) invert(1);
+/*	opacity: 1;*/
+}
+.navigation-background .logo font {
+	color: #ffffff;
+}
+
+.navigation-background .login {
+    padding-top: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.navigation-background .login a {
+        color: #ffffff;
+}
+
+.navigation-background .login font {
+        color: #ffffff;
 }
 
 .navigation-background .navigation-menu .navbar-nav li a {

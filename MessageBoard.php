@@ -23,7 +23,8 @@ class MessageBoard extends DB{
 		if(count($_POST)!=0){
 		$name = $_POST["name"];
                 $content = $_POST["content"];
-                $T=date("Y-m-d h:i:s",time());
+		date_default_timezone_set('Asia/Taipei');
+                $T=date("Y-m-d G:i:s");
 		$this->saveData($name,$content,$T);
 		}
 	}
@@ -129,6 +130,11 @@ class MessageBoard extends DB{
 
                 }*/
 	}
+	function changePwd($id,$pwd){
+		$newPwd=md5($pwd);
+		$sql = "UPDATE `user` SET `pswd`='$newPwd' WHERE `acc`='$id'";
+		$this->database->query($sql);
+	}
 }
 
 
@@ -142,7 +148,7 @@ if ($registration == "success"){
 $talk_id = $_POST['t_id'];
 $id= $_POST['student_id'];
 $content= $_POST['contents'];
-$T=date("Y-m-d h:i:s",time());
+$T=date("Y-m-d H:i:s",time());
 $m->saveData($id,$T,$content,$talk_id);
 $m->loadData($talk_id);
 $arr = $m->messages;
@@ -179,6 +185,14 @@ $m->update_userdata($u_acc,$u_thumb,$u_publish,$t_id);
 //$arr = $m->userdata;
 //echo json_encode($arr);
 }
+
+else if($registration == "chgpwd"){
+$id= $_POST['student_id'];
+$pwd= $_POST['password'];
+$m->changePwd($id,$pwd);
+echo json_encode("h1");
+}
+
 
 if ($registration == "init"){
 $talk_id = $_POST['t_id'];

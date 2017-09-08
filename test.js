@@ -19,27 +19,34 @@ function init(){
 }
 
 //function getMessage () {
-function getMessage(stu){	
-	if(parseInt(publish_poi.innerHTML)<1){
+function getMessage(){	
+//        console.log(publish_poi.innerHTML);
 	var datas_poi = document.getElementById('content');
         var datas = datas_poi.value;
+	console.log(datas_poi.value);
+	if (datas==""){
+		alert("You need to write something");
+	}
+	else if(parseInt(publish_poi.innerHTML)>1000){
+	//var datas_poi = document.getElementById('content');
+       // var datas = datas_poi.value;
         datas_poi.value="";
 	alert("You have no right to post");
 	}
 	else{
-	saveUserdata(stu,parseInt(thumb_poi.innerHTML),parseInt(publish_poi.innerHTML)-1);
-	publish_poi.innerHTML = parseInt(publish_poi.innerHTML)-1;
+	saveUserdata(curUser,parseInt(thumb_poi.innerHTML),parseInt(publish_poi.innerHTML)+1);
+	publish_poi.innerHTML = parseInt(publish_poi.innerHTML)+1;
 //	console.log(user_data.thumb+"  ======   "+user_data.publish);
 //	console.log(data_user);
 	var datas_poi = document.getElementById('content');
 	var datas = datas_poi.value;
 	datas_poi.value="";	
-	console.log(stu+"  "+datas);	
+	console.log(curUser+"  "+datas);	
           $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
-           data: {registration: "success", student_id: stu, contents: datas,t_id: talk_id},
+           data: {registration: "success", student_id: curUser, contents: datas,t_id: talk_id},
             success:function(result){
 		rank_thumb(result);
            }
@@ -76,7 +83,7 @@ function show(result){
 console.log("show");
 var board = document.querySelector("#board");
 var list = document.getElementsByClassName('one');
-//console.log(result[0]);
+console.log(result[0]);
 for(var i = list.length - 1; 0 <= i; i--)
  if(list[i] && list[i].parentElement)
  list[i].parentElement.removeChild(list[i]);
@@ -84,46 +91,110 @@ for(var i = list.length - 1; 0 <= i; i--)
 console.log("before for");
 for (i=0;i<result.length;i++){
 	liked=0;
-	para = document.createElement("div");
-	u = document.createElement("h1");
-	t = document.createElement("h1");
-	c = document.createElement("h1");
-	thumb = document.createElement("button");
-	thumb_num = document.createElement("p");
-	u_con = document.createTextNode(result[i]['username']);
-	t_con = document.createTextNode(result[i]['times']);
-	c_con = document.createTextNode(result[i]['contents']);		
-//	thumb_con = document.createTextNode("讚");
-//	thumb_num_con = document.createTextNode(result[i]['numLikes']);
-//	thumb.className = result[i]['id'];
-//	thumb_num.id = result[i]['id'];
-	liked=check_if_liked(result[i]['likesFrom']);
-//	console.log(liked);
-	thumb.className = result[i]['id'];
-	thumb_num.id = result[i]['id'];
-	if(liked==0){
-            thumb_con = document.createTextNode("讚");
-	    thumb.setAttribute( "onClick", "press_thumb(this.className)");
-	}else{
-            thumb_con = document.createTextNode("收回讚");
-	    thumb.setAttribute( "onClick", "unpress_thumb(this.className)");
-	}
-        thumb_num_con = document.createTextNode(result[i]['numLikes']);
-	u.appendChild(u_con);
-	t.appendChild(t_con);
-	c.appendChild(c_con);
-	thumb.appendChild(thumb_con);
-	thumb_num.appendChild(thumb_num_con);
-	
-	para.appendChild(u);
-	para.appendChild(t);
-	para.appendChild(c);
-	para.appendChild(thumb);
-	para.appendChild(thumb_num);
-	para.className+= 'one';	
-//	para.id = result[i]['id'];
-	board.appendChild(para);
+        question = document.createElement("div");
+        question_top = document.createElement("div");
+        question_content = document.createElement("div");
+        question_content_bg = document.createElement("div");
+        question_likes = document.createElement("div");
+
+        icon = document.createElement("img");
+        icon.style.width= "60px";
+        icon.src="images/icon/ask_icon.png";
+
+        user=document.createElement("font");
+        user.size=5;
+
+        time=document.createElement("font");
+
+        content=document.createElement("font");
+
+        thumb = document.createElement("img");
+        thumb.style.width = "20px";
+        thumb_num = document.createElement("font");
+        thumb_num.size=5;
+        u_con = document.createTextNode(result[i]['username']);
+        t_con = document.createTextNode(result[i]['times']);
+        c_con = document.createTextNode(result[i]['contents']);
+        liked=check_if_liked(result[i]['likesFrom']);
+        thumb.className = result[i]['id'];
+        thumb_num.id = result[i]['id'];
+        if(liked==0){
+            thumb.src="images/icon/unlike.png";
+            thumb.title="按讚";
+            thumb.setAttribute( "onClick", "press_thumb(this.className)");
+        }else{
+            thumb.src="images/icon/like.png";
+            thumb.title="收回讚";
+            thumb.setAttribute( "onClick", "unpress_thumb(this.className)");
+        }
+        br=document.createElement("br");
+        br2=document.createElement("br");
+        br3=document.createElement("br");
+        thumb_num_con = document.createTextNode(" "+result[i]['numLikes']);
+        user.appendChild(u_con);
+        time.appendChild(t_con);
+        user.style.position="relative";
+        user.style.left="10px";
+        time.style.paddingLeft="60px";
+        time.style.position="relative";
+        time.style.left="60px";
+        time.size=2;
+        time.style.color="#888888";
+
+        question_top.appendChild(user);
+        question_top.appendChild(br);
+        question_top.appendChild(time);
+        question_top.style.position="relative";
+        question_top.style.height="50px";
+        question_top.style.borderStyle="solid";
+        question_top.style.borderSize="1px";
+        question_top.style.borderColor="#DDDDDD";
+        question_top.style.backgroundColor="#DDDDDD";
+        question_top.style.borderRadius="10px";
+        question_top.style.width="270px";
+        question_top.style.boxShadow="5px 5px 5px #888888";
+        question_top.style.zIndex=2;
+
+
+        content.appendChild(c_con);
+        content.size=5;
+        question_content.appendChild(content);
+
+        thumb_num.appendChild(thumb_num_con);
+        thumb_num.size=3;
+        thumb_num.style.position="relative";
+        thumb_num.style.left="95%";
+        thumb.style.position="relative";
+        thumb.style.left="95%";
+        question_content.appendChild(br2);
+        question_content.appendChild(thumb_num);
+        question_content.appendChild(thumb);
+        question_content.style.position="relative";
+        question_content.style.margin="20px";
+	question_content.style.wordWrap="break-word";
+
+        question_content_bg.appendChild(question_content);
+        question_content_bg.style.position="relative";
+        question_content_bg.style.borderStyle="solid";
+        question_content_bg.style.borderSize="1px";
+        question_content_bg.style.borderColor="#EEEEEE";
+        question_content_bg.style.zIndex=1;
+        question_content_bg.style.backgroundColor="#FFFFFF";
+        question_content_bg.style.boxShadow="5px 5px 5px #888888";
+
+
+        question_content_bg.style.left="15px";
+        question_content_bg.style.top="-10px";
+        question_content_bg.style.width="95%";
+
+        question.appendChild(question_top);
+        question.appendChild(question_content_bg);
+	question.appendChild(br3);
+
+        question.className+= 'one';
+        board.appendChild(question);
 }
+	//console.log(question);
 }
 
 function check_if_liked(likefrom){
@@ -156,14 +227,13 @@ function compare(a,b) {
 
 
 function press_thumb(class_name){
-//console.log(thumb_poi.innerHTML);
-if(parseInt(thumb_poi.innerHTML)<1){
+if(parseInt(thumb_poi.innerHTML)>1000){
 alert("You have no right to press thumb");
 }
 
 else{
-saveUserdata(curUser,parseInt(thumb_poi.innerHTML)-1,parseInt(publish_poi.innerHTML));
-thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)-1;
+saveUserdata(curUser,parseInt(thumb_poi.innerHTML)+1,parseInt(publish_poi.innerHTML));
+thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)+1;
 var num = document.getElementById(class_name);
 
 count = parseInt(num.innerHTML);
@@ -176,8 +246,8 @@ save_thumb(class_name,count,1);
 }
 
 function unpress_thumb(class_name){
-saveUserdata(curUser,parseInt(thumb_poi.innerHTML)+1,parseInt(publish_poi.innerHTML));
-thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)+1;
+saveUserdata(curUser,parseInt(thumb_poi.innerHTML)-1,parseInt(publish_poi.innerHTML));
+thumb_poi.innerHTML = parseInt(thumb_poi.innerHTML)-1;
 var num = document.getElementById(class_name);
 
 count = parseInt(num.innerHTML);
