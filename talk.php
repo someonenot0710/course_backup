@@ -51,11 +51,11 @@ $l = new Login();
 
 $sql = "SELECT * FROM `user` where `acc` = '$uu'";
 $result = $l->database->query($sql);
-
+$talk_id=$_SERVER['QUERY_STRING'];
 while ($row = $result->fetch_assoc()){
 $myobj=new stdClass;
-$myobj->thumb=$row['thumb'];
-$myobj->publish=$row['publish'];
+$myobj->thumb=$row['thumb'.$talk_id];
+$myobj->publish=$row['publish'.$talk_id];
 
 }
 

@@ -114,9 +114,11 @@ class MessageBoard extends DB{
                 }
         }
 	
-	function update_userdata($acc,$u_thumb,$u_publish){
+	function update_userdata($acc,$u_thumb,$u_publish,$t_id){
 //		$sql = "SELECT * FROM `user` where `acc` = '$acc'";
-                $sql = "UPDATE `user` SET `thumb`='$u_thumb',`publish`='$u_publish' WHERE `acc`='$acc'";
+		$f_thumb = 'thumb'.$t_id;
+		$f_publish = "publish".$t_id;
+                $sql = "UPDATE `user` SET `$f_thumb`='$u_thumb',`$f_publish`='$u_publish' WHERE `acc`='$acc'";
 		$this->database->query($sql);
 //                $row = $result->fetch_assoc();
 /*                while ($row = $result->fetch_assoc()){
@@ -171,7 +173,8 @@ else if ($registration == "user"){
 $u_acc = $_POST['user_name'];
 $u_thumb = $_POST['u_thumb'];
 $u_publish = $_POST['u_publish'];
-$m->update_userdata($u_acc,$u_thumb,$u_publish);
+$t_id = $_POST['t_id'];
+$m->update_userdata($u_acc,$u_thumb,$u_publish,$t_id);
 //$m->get_userdata($u_acc);
 //$arr = $m->userdata;
 //echo json_encode($arr);

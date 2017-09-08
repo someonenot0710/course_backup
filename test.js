@@ -53,11 +53,14 @@ function getMessage(stu){
 
 function saveUserdata(user_name,u_thumb,u_publish){
 
+//	f_thumb = u_thumb+talk_id;
+//	f_publish = u_publish + talk_id; 
+	console.log("talk_id: " + talk_id );
      $.ajax({
            url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
-           data: {registration: "user", user_name: user_name, u_thumb:u_thumb, u_publish:u_publish},
+           data: {registration: "user", user_name: user_name, u_thumb:u_thumb, u_publish:u_publish,t_id:talk_id},
             success:function(result){
 	//	getUserresult(result);
 //		callback(result);
