@@ -13,7 +13,7 @@
     
         <!-- Google Web Fonts  -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-        <title>course</title>
+        <title>發問區</title>
     </head>
 
 
@@ -100,9 +100,11 @@ $myobj->publish=$row['publish'.$talk_id];
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a class="smoth-scroll" href="syllabus.php">Home<!--div class="ripple-wrapper"></div--></a>
                                         </li>
-					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
+					<li class="active"><a class="smoth-scroll" href="info.php">Information</a>
                                         </li>
-                                        <li class="active"><a class="smoth-scroll" href="changepwd.php">Change Password</a>
+					<li class="active"><a class="smoth-scroll" href="changepwd.php">Change Password</a>
+                                        </li>
+					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
                                         </li>
                                     </ul>
                                 </div>

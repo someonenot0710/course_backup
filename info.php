@@ -13,7 +13,7 @@
 
         <!-- Google Web Fonts  -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-        <title>變更密碼</title>
+        <title>課程資訊</title>
     </head>
 
 
@@ -89,7 +89,7 @@ $l = new Login();
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a class="smoth-scroll" href="syllabus.php">Home<!--div class="ripple-wrapper"></div--></a>
                                         </li>
-					<li><a class="smoth-scroll" href="info.php">Information</a></li>
+					<li><a class="smoth-scroll" href="chgpswd.php">Change Password</a></li>
                                         </li>
 					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
                                         </li>
@@ -102,15 +102,16 @@ $l = new Login();
             </div>
         </div>
      </header>
-
-        <div class="chgpwd">
-	<form action="">
-	<font>請輸入新密碼:</font>
-	<input type="password" id="chgpwd1" style="width:80px"><br>
-	<font>請再次輸入新密碼:</font>
-	<input type="password" id="chgpwd2" style="width:80px"><br>
-        <input type="button" value="確定更改密碼" class="chgpwd-submit" onclick="changePassword()">
-	</form> 	
+	<div class="info-course">
+	<h1><font>書報討論 106上學期</font></h1>
+	</div>
+	<div class="info">
+	<div class="professor">
+	<font style="size: 4;">老師: 徐正炘 chhsu@cs.nthu.edu.tw</font><br>
+	</div>
+	<div class="assistant">
+	<font style="size: 4;">助教: 樊慶玲、嚴守成</font>
+	</div>
 	</div>
 	<script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
         <script type="text/javascript" src="pwd.js"></script> 

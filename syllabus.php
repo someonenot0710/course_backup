@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+	<link rel="shortcut icon" href="images/icon/logo.ico">
         <!-- All CSS Plugins -->
         <link rel="stylesheet" type="text/css" href="css/plugin.css">
 
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 
         <link rel="stylesheet" type="text/css" href="another.css">
-        <title>course</title>
+        <title>書報討論106上學期</title>
     </head>
 
 <?php
@@ -41,8 +41,14 @@ $l = new Login();
 
 ?>
 
-    <body>
+    <body background="images/bg/pattern-bg.png">
     <script type="text/javascript"> var curUser = <?php echo "null;" ?>;</script>
+        <!-- Preloader Start -->
+    <div class="preloader">
+          <p>Loading...</p>
+     </div>
+     <!-- Preloader End -->
+
     <header id="home">
         <div class="header-top-area">
             <div class="container">
@@ -76,6 +82,7 @@ if(!isset($_SESSION['account'])){
     ?> 
                     <div class="col-sm-3">
                         <div class="login">
+			    <a>書報討論 106上學期</a>
                             <form action="syllabus.php" method="post">
                                 <!--font>帳號:</font-->
                                 <input type="text" name="account" placeholder="帳號" style="width:80px; display: inline;">
@@ -98,6 +105,7 @@ else{
 ?>
                    <div class="col-sm-3">
                         <div class="login">
+			    <a>書報討論 106上學期</a>
                             <a><?php echo "$uu";?></a>
                         </div>
                     </div>
@@ -114,15 +122,19 @@ else{
                                 </div>
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li class="active"><a class="smoth-scroll" href="logout.php">Logout</a>
+                                        <li class="active"><a class="smoth-scroll" href="info.php">Information</a>
                                         </li>
                                         <li class="active"><a class="smoth-scroll" href="changepwd.php">Change Password</a>
                                         </li>
+					<li class="active"><a class="smoth-scroll" href="logout.php">Logout</a>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+ <script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
 <?php
 }
 ?>
@@ -131,7 +143,7 @@ else{
         </div>
  </header>
 
-    <script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script>
+    <!--script type="text/javascript"> var curUser = <?php echo "'$uu'"; ?>;</script-->
     <!--input type="button" onclick="location.href='logout.php';" value="logout" /-->
         <div id="board" class="talk-board"></div>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>

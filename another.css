@@ -4,6 +4,11 @@ text-align:center;
 
 }
 
+.main {
+
+font-size: 35px;
+
+}
 
 .one img{
 border-radius:50%;
@@ -15,7 +20,15 @@ height:300px;
 .content {
 margin-left: 20%;
 margin-right: 20%;
+font-size: 30px;
+}
 
+.date {
+font-size: 20px;
+}
+
+.link {
+font-size: 20px;
 }
 
 
@@ -39,12 +52,24 @@ height:200px;
 .content {
 margin-left: 3%;
 margin-right: 3%;
-
+font-size: 20px;
 }
 
 a:hover {
     color: red;
     background-color: transparent;
     text-decoration: underline;
+}
+
+.main {
+font-size: 25px;
+}
+
+.date {
+font-size: 15px;
+}
+
+.link {
+font-size: 15px;
 }
 

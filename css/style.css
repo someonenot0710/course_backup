@@ -321,10 +321,42 @@ fieldset {
 }
 
 /* Change Password Box */
+@media screen and (min-width: 450px) {
+.chgpwd{
+    padding-top: 80px;
+    padding-left: 40%;
+}
+}
+@media screen and (max-width: 450px) {
 .chgpwd {
     padding-top: 80px;
+    padding-left: 20%;
 }
 
+}
+/* Course Infomation*/
+@media screen and (min-width: 450px) {
+.info{
+    padding-top: 20px;
+    padding-left: 36%;
+    font-size: 20px;
+}
+.info-course{
+    padding-top: 80px;
+    padding-left: 37%;
+}
+}
+@media screen and (max-width: 450px) {
+.info{
+    padding-left: 12%;
+    padding-top: 20px;
+    font-size: 15px;
+}
+.info-course{
+    padding-top: 80px;
+    padding-left: 7%;
+}
+}
 /* Question Box */
 .question-box {
     padding-top: 80px;
@@ -465,7 +497,7 @@ tr > td:nth-child(2) {
     font-weight: 600;
     font-size: 14px;
 /*      border-bottom: 4px solid #f7639a;*/
-    width: 92px;
+    /*width: 92px;*/
 }
 .login font{
     display: inline;

@@ -85,12 +85,14 @@ for (i=0;i<result.length;i++){
 	}else{
             links.setAttribute( "onClick", "alert('Please login.')");
         }
+	person.className+= 'main';
 	dates.className+= 'date';
 	about.className+= 'content';
+	links.className+= 'link';
 	para.appendChild(image);
 	para.appendChild(person);
-	para.appendChild(dates);
 	para.appendChild(about);
+	para.appendChild(dates);
 	para.appendChild(links);
 	para.className+= 'one';	
 	board.appendChild(para);

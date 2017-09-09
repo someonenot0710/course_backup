@@ -3,45 +3,34 @@
 var thumb_poi = document.getElementById('thumb');
 var publish_poi = document.getElementById('publish');
 function init(){
-	  console.log(user_thumb+"__"+user_publish);
           $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
 	    data: {registration: "init",t_id: talk_id},
             success:function(result){
-                console.log("sucess");
 //                show(result);
 		rank_thumb(result);
            }
     })
-	console.log("init");
 }
 
-//function getMessage () {
 function getMessage(){	
-//        console.log(publish_poi.innerHTML);
 	var datas_poi = document.getElementById('content');
         var datas = datas_poi.value;
-	console.log(datas_poi.value);
 	if (datas==""){
 		alert("You need to write something");
 	}
 	else if(parseInt(publish_poi.innerHTML)>1000){
-	//var datas_poi = document.getElementById('content');
-       // var datas = datas_poi.value;
         datas_poi.value="";
 	alert("You have no right to post");
 	}
 	else{
 	saveUserdata(curUser,parseInt(thumb_poi.innerHTML),parseInt(publish_poi.innerHTML)+1);
 	publish_poi.innerHTML = parseInt(publish_poi.innerHTML)+1;
-//	console.log(user_data.thumb+"  ======   "+user_data.publish);
-//	console.log(data_user);
 	var datas_poi = document.getElementById('content');
 	var datas = datas_poi.value;
 	datas_poi.value="";	
-	console.log(curUser+"  "+datas);	
           $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
@@ -52,7 +41,6 @@ function getMessage(){
            }
     })
 	}
-//	window.location.reload();
 }
 
 
@@ -60,35 +48,26 @@ function getMessage(){
 
 function saveUserdata(user_name,u_thumb,u_publish){
 
-//	f_thumb = u_thumb+talk_id;
-//	f_publish = u_publish + talk_id; 
-	console.log("talk_id: " + talk_id );
      $.ajax({
            url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
            data: {registration: "user", user_name: user_name, u_thumb:u_thumb, u_publish:u_publish,t_id:talk_id},
             success:function(result){
-	//	getUserresult(result);
-//		callback(result);
            }
     })
 }
 
 
-//}
 
 
 function show(result){
-console.log("show");
 var board = document.querySelector("#board");
 var list = document.getElementsByClassName('one');
-console.log(result[0]);
 for(var i = list.length - 1; 0 <= i; i--)
  if(list[i] && list[i].parentElement)
  list[i].parentElement.removeChild(list[i]);
 
-console.log("before for");
 for (i=0;i<result.length;i++){
 	liked=0;
         question = document.createElement("div");
@@ -194,7 +173,6 @@ for (i=0;i<result.length;i++){
         question.className+= 'one';
         board.appendChild(question);
 }
-	//console.log(question);
 }
 
 function check_if_liked(likefrom){
@@ -208,9 +186,7 @@ function check_if_liked(likefrom){
 }
 
 function rank_thumb(result){
-//result.sort(function(a,b) {return (parseInt(a.thumbs) < parseInt(b.thumbs)) ? 1 : ((parseInt(b.thumbs) > parseInt(a.thumbs)) ? -1 : 0);} );
 result.sort(compare);
-//console.log(result);
 
 show(result);
 
@@ -240,7 +216,6 @@ count = parseInt(num.innerHTML);
 count = count+1;
 
 num.innerHTML = count;
-console.log("add "+curUser);
 save_thumb(class_name,count,1);
 }
 }
@@ -261,16 +236,15 @@ save_thumb(class_name,count,0);
 
 
 function save_thumb(m_id,m_num,likeorunlike){
- 	console.log('save thumb '+likeorunlike);
+ 	//console.log('save thumb '+likeorunlike);
          $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
            data: {registration: "thumb", para_id: m_id, para_thumb: m_num,para_user: curUser, para_likeorunlike: likeorunlike, t_id: talk_id},
             success:function(result){
- //            console.log(result);
                // show(result);
-		console.log('success')
+		//console.log('success')
 		rank_thumb(result);
            }
     })
@@ -278,8 +252,5 @@ function save_thumb(m_id,m_num,likeorunlike){
 
 
 window.onload = function(){
-//console.log(talk_id);
 init();
-//console.log(curUser);
-//getUserdata(curUser);
 }
