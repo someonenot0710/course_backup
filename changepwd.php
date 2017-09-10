@@ -54,14 +54,6 @@ $l = new Login();
 
     <body  background="images/bg/pattern-bg.png">
 	
-	<!-- Preloader Start -->
-    <div class="preloader">
-	  <p>Loading...</p>
-     </div>
-     <!-- Preloader End -->
-
-    
-    
     <!-- Menu Section Start -->
     <header id="home">
         <div class="header-top-area">

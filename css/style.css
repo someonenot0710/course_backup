@@ -320,6 +320,18 @@ fieldset {
   }
 }
 
+/*talk presenter */
+@media screen and (min-width: 450px) {
+.presenter{
+    padding-left: 55%;
+}
+}
+@media screen and (max-width: 450px) {
+.presenter {
+    padding-left: 70%;
+}
+}
+
 /* Change Password Box */
 @media screen and (min-width: 450px) {
 .chgpwd{

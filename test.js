@@ -1,7 +1,10 @@
 //curUser: current user account
 //user_thumb , user_publish
+var sorting = "time";
+
 var thumb_poi = document.getElementById('thumb');
 var publish_poi = document.getElementById('publish');
+var result_tmp;
 function init(){
           $.ajax({
             url:"MessageBoard.php", //the page containing php script
@@ -9,8 +12,9 @@ function init(){
             datatype: 'json',
 	    data: {registration: "init",t_id: talk_id},
             success:function(result){
-//                show(result);
-		rank_thumb(result);
+		result_tmp = result;
+//		show(result.reverse());
+		sortbytime();
            }
     })
 }
@@ -37,10 +41,63 @@ function getMessage(){
             datatype: 'json',
            data: {registration: "success", student_id: curUser, contents: datas,t_id: talk_id},
             success:function(result){
-		rank_thumb(result);
+		//rank_thumb(result);
+		result_tmp = result;
+		check_mode();
            }
     })
 	}
+}
+
+
+function check_mode(){
+
+if(sorting=="post"){
+	sortbypost();
+}
+
+else if (sorting=="time"){
+	sortbytime();
+}
+
+else if (sorting=="like"){
+	sortbylike();
+}
+
+}
+
+function sortbytime(){
+//if(sorting=="post")
+sorting = "time";
+var tmp = [];
+for (i=0;i<result_tmp.length;i++){
+tmp.push(result_tmp[i]);
+}
+//tmp.push(result_tmp);
+//console.log(tmp);
+show(tmp.reverse());
+}
+
+function sortbylike(){
+sorting = "like";
+var like_tmp = [];
+for (i=0;i<result_tmp.length;i++){
+like_tmp.push(result_tmp[i]);
+}
+
+rank_thumb(like_tmp);
+}
+
+function sortbypost(){
+sorting = "post";
+var mypost = [];
+for (i=0;i<result_tmp.length;i++){
+if(result_tmp[i]['username']==curUser){
+mypost.push(result_tmp[i]);
+}
+} 
+show(mypost.reverse());
+
 }
 
 
@@ -91,9 +148,12 @@ for (i=0;i<result.length;i++){
         thumb.style.width = "20px";
         thumb_num = document.createElement("font");
         thumb_num.size=5;
+	time_split = result[i]['times'].split(" ");
         u_con = document.createTextNode(result[i]['username']);
-        t_con = document.createTextNode(result[i]['times']);
+        t_con = document.createTextNode(time_split[1]);
         c_con = document.createTextNode(result[i]['contents']);
+//	if(result[i]['contents'][2]=="\n")
+//	console.log(result[i]['contents']);
         liked=check_if_liked(result[i]['likesFrom']);
         thumb.className = result[i]['id'];
         thumb_num.id = result[i]['id'];
@@ -106,7 +166,7 @@ for (i=0;i<result.length;i++){
             thumb.title="收回讚";
             thumb.setAttribute( "onClick", "unpress_thumb(this.className)");
         }
-        br=document.createElement("br");
+	br=document.createElement("br");
         br2=document.createElement("br");
         br3=document.createElement("br");
         thumb_num_con = document.createTextNode(" "+result[i]['numLikes']);
@@ -134,8 +194,33 @@ for (i=0;i<result.length;i++){
         question_top.style.boxShadow="5px 5px 5px #888888";
         question_top.style.zIndex=2;
 
+	content_split = result[i]['contents'].split('\n');
 
-        content.appendChild(c_con);
+/*	for (j=0;j<result[i]['contents'].length;j++){
+	if(result[i]['contents'][j]=="\n")
+	{
+	line=document.createElement("br");
+	content.appendChild(line);
+	}
+
+	else{
+	c_con = document.createTextNode(result[i]['contents'][j]);
+	content.appendChild(c_con);
+	}
+	}
+*/
+	for (j=0;j<content_split.length;j++){
+	c_con = document.createTextNode(content_split[j]);
+	content.appendChild(c_con);
+	if(j<content_split.length-1){
+	line=document.createElement("br");
+        content.appendChild(line);
+	}
+	}
+
+//        content.appendChild(c_con);
+
+
         content.size=5;
         question_content.appendChild(content);
 
@@ -236,16 +321,15 @@ save_thumb(class_name,count,0);
 
 
 function save_thumb(m_id,m_num,likeorunlike){
- 	//console.log('save thumb '+likeorunlike);
          $.ajax({
             url:"MessageBoard.php", //the page containing php script
             type: "POST", //request type,
             datatype: 'json',
            data: {registration: "thumb", para_id: m_id, para_thumb: m_num,para_user: curUser, para_likeorunlike: likeorunlike, t_id: talk_id},
             success:function(result){
-               // show(result);
-		//console.log('success')
-		rank_thumb(result);
+//		rank_thumb(result);
+		result_tmp = result;
+		check_mode();
            }
     })
 }

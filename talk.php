@@ -58,7 +58,11 @@ $myobj->thumb=$row['thumb'.$talk_id];
 $myobj->publish=$row['publish'.$talk_id];
 
 }
-
+$sql = "SELECT * FROM `talks` WHERE `ID` = '$talk_id'";
+$result = $l->database->query($sql);
+$row = $result->fetch_assoc();
+$talk_topic=$row['lecturer'];
+$talk_presenter=$row['syllabus'];
 ?>
 
     <body  background="images/bg/pattern-bg.png">
@@ -115,9 +119,16 @@ $myobj->publish=$row['publish'.$talk_id];
             </div>
         </div>
      </header>
+	<br><br><br>
+	<button onclick="sortbytime()">Time</button>
+	<button onclick="sortbylike()">Like</button>
+	<button onclick="sortbypost()">My Post</button>
 	<div class="question-box">
 	<form action="" style="text-align: center;">
 	<?php $talk_id=$_SERVER['QUERY_STRING'];?>
+	<br>
+	<h1 style="font-size:26px"><?php echo "$talk_topic"; ?></h1>
+	<h2 class="presenter" style="font-size:18px"><?php echo "$talk_presenter"; ?></h2>
 	<br>
         <p>
         <textarea id="content" class="question-text" name="content" placeholder="Type you question here..."></textarea>

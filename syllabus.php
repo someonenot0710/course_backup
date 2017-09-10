@@ -43,11 +43,6 @@ $l = new Login();
 
     <body background="images/bg/pattern-bg.png">
     <script type="text/javascript"> var curUser = <?php echo "null;" ?>;</script>
-        <!-- Preloader Start -->
-    <div class="preloader">
-          <p>Loading...</p>
-     </div>
-     <!-- Preloader End -->
 
     <header id="home">
         <div class="header-top-area">
