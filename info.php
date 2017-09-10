@@ -89,7 +89,7 @@ $l = new Login();
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a class="smoth-scroll" href="syllabus.php">Home<!--div class="ripple-wrapper"></div--></a>
                                         </li>
-					<li><a class="smoth-scroll" href="chgpswd.php">Change Password</a></li>
+					<li><a class="smoth-scroll" href="changepwd.php">Change Password</a></li>
                                         </li>
 					<li><a class="smoth-scroll" href="logout.php">Logout</a></li>
                                         </li>

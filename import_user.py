@@ -15,6 +15,7 @@ cursor = db.cursor()
 lines=user_file.readlines()[1:]
 for i in range(len(lines)):
 	arr=lines[i].strip().split(',')
+	print arr
 	userid=arr[0]
 	username=arr[1]
 	insert = ("INSERT INTO user (acc,pswd,name,isAdmin,thumb1,publish1,thumb2,publish2,thumb3,publish3) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
